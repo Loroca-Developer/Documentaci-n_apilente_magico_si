@@ -11,7 +11,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 // use Illuminate\Support\Facades\Hash;
 
-    class usuarioModelo extends Authenticatable implements JWTSubject
+class usuarioModelo extends Authenticatable implements JWTSubject
 {
     //
     use HasFactory;
@@ -37,22 +37,26 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
     ];
 
     //relaciones entre datos personales y usuario, es decir un usuario pertenece a un dato personal
-   public function datosPersonales()
+    public function datosPersonales()
     {
         return $this->belongsTo(
-            datosPersonalesModelo::class, 'id_datos_personales', 'id');
+            datosPersonalesModelo::class,
+            'id_datos_personales',
+            'id'
+        );
     }
     //Relacion entre usuario y autorizacion, es decir un usuario puede tener muchas autorizaciones
-    public function autorizaciones(){
-        return $this->belongsToMany(
-            autorizacionModelo::class,
-            'id',
-            'id_autorizacion',
-            'id_sistema_usuario',
-            'id',
-            'id'
-            );
-    }
+    // public function autorizaciones()
+    // {
+    //     return $this->belongsToMany(
+    //         autorizacionModelo::class,
+    //         'id',
+    //         'id_autorizacion',
+    //         'id_sistema_usuario',
+    //         'id',
+    //         'id'
+    //     );
+    // }
 
     //trae el correo de la tabla datos personales, es decir el correo del usuario
     public function getCorreoAttribute()
@@ -69,31 +73,16 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
         return $this->contrasenia;
     }
 
-    // public function getJWTIdentifier()
-    // {
-    //     return $this->getKey();
-    // }
 
-    // public function getJWTCustomClaims(): array
-    // {
-    //     return [];
-    // }
-
-    // Relacion con roles atrves de usuario es decir la relacion de muchos a muchos entre usuario y autorizacion_usuario
-    // ESTA ES PARA LA RELACION CON LA BASE DE DATOS
-    // public function autorizacion()
-    // {
-    //     return $this->belongsToMany(autorizacionModelo::class, 'autorizacion_usuario', 'id_usuario', 'id_autorizacion');
-    // }
     public function autorizacion()
-{
-    return $this->belongsToMany(
-        autorizacionModelo::class,
-        'autorizacion_usuario',   // nombre correcto de la tabla pivote
-        'id_sistema_usuario',     // columna que apunta al usuario
-        'id_autorizacion'         // columna que apunta a la autorización
-    );
-}
+    {
+        return $this->belongsToMany(
+            autorizacionModelo::class,
+            'autorizacion_usuario',   // nombre correcto de la tabla pivote
+            'id_sistema_usuario',     // columna que apunta al usuario
+            'id_autorizacion'         // columna que apunta a la autorización
+        );
+    }
 
     // Metodo requerido por el JWT
     // Aqui se genera un JWT el sistema necesira saber el valor y a que ID pertenece.
@@ -116,21 +105,3 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
         ];
     }
 }
-
-    // Relacion con roles a traves de usuario
-    //     /**
-    //      * Relacion con el modelo de datos personales
-    //      */
-    //     /**public function datosPersonales(): BelongsTo
-    //     {
-    //         return $this->belongsTo(datosPersonalesModelo::class, 'id_datos_personales');
-
-
-    //     }
-    //     // public function setContraseniaAttribute($value)
-    //     // {
-    //     //         $this->attributes['contrasenia'] = Hash::make($value);
-    //     // }
-    // */
-
-    

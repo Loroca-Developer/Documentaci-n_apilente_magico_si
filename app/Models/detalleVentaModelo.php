@@ -5,20 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class logErroresModelo extends Model
+
+class detalleVentaModelo extends Model
 {
-    //
     use HasFactory;
-    protected $table = 'log_errores';
+    protected $table = 'detalle_venta';
     public $timestamps = false;
-     protected $primaryKey = 'id';
+    protected $primaryKey = 'id_detalle';
     public $incrementing = true;
     protected $keyType = 'int';
     protected $fillable = [
-        'id_usuario',
-        'nivel',
-        'nombre_usuario',
-        'mensaje',
-        'fecha'
+        'id_venta',
+        'id_producto',
+        'cantidad',
+        'precio_unitario'
     ];
 }

@@ -88,11 +88,11 @@ class autorizacionUsuarioControlador extends Controller
 
     public function destroy($id_autorizacion, $id_sistema_usuario)
     {
-        $autorizacion_usuario = AutorizacionUsuario::where('id_autorizacion', $id_autorizacion)
+        $existe = AutorizacionUsuario::where('id_autorizacion', $id_autorizacion)
             ->where('id_sistema_usuario', $id_sistema_usuario)
-            ->first();
+            ->exists();
 
-        if (!$autorizacion_usuario) {
+        if (!$existe) {
             $data = [
                 'message' => 'No se encontró la autorizacion de usuario',
                 'status' => 404
@@ -100,7 +100,9 @@ class autorizacionUsuarioControlador extends Controller
             return response()->json($data, 404);
         }
 
-        $autorizacion_usuario->delete();
+        AutorizacionUsuario::where('id_autorizacion', $id_autorizacion)
+            ->where('id_sistema_usuario', $id_sistema_usuario)
+            ->delete();
 
         $data = [
             'message' => 'Autorizacion de usuario eliminada exitosamente',
@@ -110,51 +112,51 @@ class autorizacionUsuarioControlador extends Controller
     }
 
     public function update(Request $request, $id_autorizacion, $id_sistema_usuario)
-{
-    $existe = AutorizacionUsuario::where('id_autorizacion', $id_autorizacion)
-        ->where('id_sistema_usuario', $id_sistema_usuario)
-        ->exists();
+    {
+        $existe = AutorizacionUsuario::where('id_autorizacion', $id_autorizacion)
+            ->where('id_sistema_usuario', $id_sistema_usuario)
+            ->exists();
 
-    if (!$existe) {
-        $data = [
-            'message' => 'No se encontró la autorizacion de usuario',
-            'status' => 404
-        ];
-        return response()->json($data, 404);
-    }
+        if (!$existe) {
+            $data = [
+                'message' => 'No se encontró la autorizacion de usuario',
+                'status' => 404
+            ];
+            return response()->json($data, 404);
+        }
 
-    $validacion = Validator::make($request->all(), [
-        'id_autorizacion' => 'required',
-        'id_sistema_usuario' => 'required'
-    ]);
-
-    if ($validacion->fails()) {
-        $data = [
-            'message' => 'Error en la validacion de los datos',
-            'errors' => $validacion->errors(),
-            'status' => 400
-        ];
-        return response()->json($data, 400);
-    }
-
-        AutorizacionUsuario::where('id_autorizacion', $id_autorizacion)
-        ->where('id_sistema_usuario', $id_sistema_usuario)
-        ->update([
-            'id_autorizacion' => $request->id_autorizacion,
-            'id_sistema_usuario' => $request->id_sistema_usuario
+        $validacion = Validator::make($request->all(), [
+            'id_autorizacion' => 'required',
+            'id_sistema_usuario' => 'required'
         ]);
 
-    $autorizacion_usuario = AutorizacionUsuario::where('id_autorizacion', $request->id_autorizacion)
-        ->where('id_sistema_usuario', $request->id_sistema_usuario)
-        ->first();
+        if ($validacion->fails()) {
+            $data = [
+                'message' => 'Error en la validacion de los datos',
+                'errors' => $validacion->errors(),
+                'status' => 400
+            ];
+            return response()->json($data, 400);
+        }
 
-    $data = [
-        'message' => 'Autorizacion de usuario actualizada exitosamente',
-        'autorizacion_usuario' => $autorizacion_usuario,
-        'status' => 200
-    ];
-    return response()->json($data, 200);
-}
+        AutorizacionUsuario::where('id_autorizacion', $id_autorizacion)
+            ->where('id_sistema_usuario', $id_sistema_usuario)
+            ->update([
+                'id_autorizacion' => $request->id_autorizacion,
+                'id_sistema_usuario' => $request->id_sistema_usuario
+            ]);
+
+        $autorizacion_usuario = AutorizacionUsuario::where('id_autorizacion', $request->id_autorizacion)
+            ->where('id_sistema_usuario', $request->id_sistema_usuario)
+            ->first();
+
+        $data = [
+            'message' => 'Autorizacion de usuario actualizada exitosamente',
+            'autorizacion_usuario' => $autorizacion_usuario,
+            'status' => 200
+        ];
+        return response()->json($data, 200);
+    }
 }
 
 //     public function update(Request $request, $id_autorizacion, $id_sistema_usuario)

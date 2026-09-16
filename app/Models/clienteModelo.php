@@ -5,16 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class autorizacionUsuarioModelo extends Model
+class ClienteModelo extends Model
 {
     use HasFactory;
-    protected $table = 'autorizacion_usuario';
+    protected $table = 'cliente';
     public $timestamps = false;
-    public $incrementing= false;
+    protected $primaryKey = 'id_cliente';
+    public $incrementing = true;
     protected $keyType = 'int';
-    // public $primaryKey = null; 
     protected $fillable = [
-        'id_autorizacion',
-        'id_sistema_usuario',
+        'fecha_registro',
+        'id_datos_personales'
     ];
 }

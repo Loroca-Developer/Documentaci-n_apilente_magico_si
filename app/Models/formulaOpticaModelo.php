@@ -10,7 +10,7 @@ class formulaOpticaModelo extends Model
     //
     use HasFactory;
     protected $table = 'formula_optica';
-    public $timestamps = true;
+    public $timestamps = false;
     protected $primaryKey = 'id_formula';
     public $incrementing = true;
     protected $keyType = 'int';

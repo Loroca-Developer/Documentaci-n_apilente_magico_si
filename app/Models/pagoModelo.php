@@ -5,20 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class logErroresModelo extends Model
+class pagoModelo extends Model
 {
-    //
     use HasFactory;
-    protected $table = 'log_errores';
+    protected $table = 'pago';
     public $timestamps = false;
-     protected $primaryKey = 'id';
+    protected $primaryKey = 'id_pagos';
     public $incrementing = true;
     protected $keyType = 'int';
     protected $fillable = [
-        'id_usuario',
-        'nivel',
-        'nombre_usuario',
-        'mensaje',
-        'fecha'
+        'id_venta',
+        'fecha_pago',
+        'monto',
+        'metodo_pago',
+        'monto_recibido',
+        'cambio'
     ];
 }

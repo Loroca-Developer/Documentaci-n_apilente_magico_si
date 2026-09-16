@@ -5,20 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class logErroresModelo extends Model
+class facturaModelo extends Model
 {
-    //
     use HasFactory;
-    protected $table = 'log_errores';
+    protected $table = 'factura';
     public $timestamps = false;
-     protected $primaryKey = 'id';
+    protected $primaryKey = 'id_factura';
     public $incrementing = true;
     protected $keyType = 'int';
     protected $fillable = [
-        'id_usuario',
-        'nivel',
-        'nombre_usuario',
-        'mensaje',
-        'fecha'
-    ];
+        'fecha_emision',
+        'id_pago',
+        'num_factura'
+    ];  
 }

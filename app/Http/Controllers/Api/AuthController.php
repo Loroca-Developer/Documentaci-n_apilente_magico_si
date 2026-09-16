@@ -42,12 +42,6 @@ class AuthController extends Controller
         }
 
 
-        // // AGREGA ESTA LÍNEA TEMPORALMENTE
-        // dd([
-        //     'id' => $user->id,
-        //     'contrasenia_length' => strlen($user->contrasenia),
-        //     'contrasenia_raw' => $user->contrasenia,
-        // ]);
 
         // Verificar contraseña (recuerda que en la BD debe estar encriptada con Hash::make)
         if (!Hash::check($request->contrasenia, $user->contrasenia)) {
@@ -56,7 +50,6 @@ class AuthController extends Controller
                 'message' => 'Contraseña incorrecta',
             ], 401);
         }
-
         try {
             $token = JWTAuth::fromUser($user);
         } catch (JWTException $e) {

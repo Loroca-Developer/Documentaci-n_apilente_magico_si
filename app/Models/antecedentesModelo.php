@@ -11,7 +11,7 @@ class antecedentesModelo extends Model
     use HasFactory;
 
     protected $table = 'antecedentes';
-    public $timestamps = true;
+    public $timestamps = false;
     protected $primaryKey = 'id_antecedentes';
     public $incrementing = true;
     protected $keyType = 'int';

@@ -5,20 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class logErroresModelo extends Model
+
+class AgendaConsultaModelo extends Model
 {
-    //
     use HasFactory;
-    protected $table = 'log_errores';
+    protected $table = 'agenda_consulta';
     public $timestamps = false;
-     protected $primaryKey = 'id';
+    protected $primaryKey = 'id_agenda';
     public $incrementing = true;
     protected $keyType = 'int';
     protected $fillable = [
-        'id_usuario',
-        'nivel',
-        'nombre_usuario',
-        'mensaje',
-        'fecha'
+        'fecha_hora',
+        'id_cliente',
+        'motivo',
+        'estado'
     ];
 }
