@@ -16,7 +16,6 @@ class formulaOpticaModelo extends Model
     protected $keyType = 'int';
     protected $fillable = [
         'id_consulta',
-        'id_cliente',
         'esfera_ojo_derecho_e_izquierdo',
         'cilindro_ojo_derecho_e_izquierdo',
         'eje_ojo_derecho_e_izquierdo',

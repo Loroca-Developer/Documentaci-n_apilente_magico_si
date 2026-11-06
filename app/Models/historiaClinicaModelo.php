@@ -16,8 +16,6 @@ class historiaClinicaModelo extends Model
     protected $keyType = 'int';
     protected $fillable = [
         'id_cliente',
-        'fecha_apertura',
-        'evolucion',
-        'num_consulta'
+        'fecha_apertura'
     ];
 }

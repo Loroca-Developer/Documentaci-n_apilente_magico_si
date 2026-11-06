@@ -15,13 +15,14 @@ class consultaModelo extends Model
     protected $primaryKey = 'id_consulta';  
     protected $keyType = 'int';
     protected $fillable = [
-        'id_cliente',
         'id_usuario',
         'id_historia',
         'fecha_hora',
         'motivo',
         'resultado_examen',
         'diagnostico',
-        'recomendaciones'
+        'recomendaciones',
+        'evolucion',
+        'id_agenda'
     ];
 }

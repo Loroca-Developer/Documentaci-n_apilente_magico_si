@@ -30,9 +30,8 @@ class historiaClinicaControlador extends Controller
     {
         $validacion = Validator::make($request->all(), [
             'id_cliente' => 'required',
-            'fecha_apertura' => 'required',
-            'evolucion' => 'required',
-            'num_consulta' => 'required'
+            'fecha_apertura' => 'required'
+            
         ]);
 
         if ($validacion->fails()) {
@@ -47,9 +46,7 @@ class historiaClinicaControlador extends Controller
 
         $historia_clinica = HistoriaClinica::create([
             'id_cliente' => $request->id_cliente,
-            'fecha_apertura' => $request->fecha_apertura,
-            'evolucion' => $request->evolucion,
-            'num_consulta' => $request->num_consulta
+            'fecha_apertura' => $request->fecha_apertura
         ]);
 
         if (!$historia_clinica) {
@@ -135,9 +132,7 @@ class historiaClinicaControlador extends Controller
 
         $validacion = Validator::make($request->all(), [
             'id_cliente' => 'required',
-            'fecha_apertura' => 'required',
-            'evolucion' => 'required',
-            'num_consulta' => 'required'
+            'fecha_apertura' => 'required'
         ]);
 
         if ($validacion->fails()) {
@@ -152,8 +147,7 @@ class historiaClinicaControlador extends Controller
 
         $historia_clinica->id_cliente = $request->id_cliente;
         $historia_clinica->fecha_apertura = $request->fecha_apertura;
-        $historia_clinica->evolucion = $request->evolucion;
-        $historia_clinica->num_consulta = $request->num_consulta;
+    
 
         $historia_clinica->save();
 

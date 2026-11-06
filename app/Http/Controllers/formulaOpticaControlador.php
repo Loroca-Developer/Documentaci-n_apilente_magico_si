@@ -30,7 +30,6 @@ class formulaOpticaControlador extends Controller
     {
         $validacion = Validator::make($request->all(), [
             'id_consulta' => 'required',
-            'id_cliente' => 'required',
             'esfera_ojo_derecho_e_izquierdo' => 'required',
             'cilindro_ojo_derecho_e_izquierdo' => 'required',
             'eje_ojo_derecho_e_izquierdo' => 'required',
@@ -53,7 +52,6 @@ class formulaOpticaControlador extends Controller
 
         $formula_optica = FormulaOptica::create([
             'id_consulta' => $request->id_consulta,
-            'id_cliente' => $request->id_cliente,
             'esfera_ojo_derecho_e_izquierdo' => $request->esfera_ojo_derecho_e_izquierdo,
             'cilindro_ojo_derecho_e_izquierdo' => $request->cilindro_ojo_derecho_e_izquierdo,
             'eje_ojo_derecho_e_izquierdo' => $request->eje_ojo_derecho_e_izquierdo,
@@ -147,7 +145,6 @@ class formulaOpticaControlador extends Controller
 
         $validacion = Validator::make($request->all(), [
             'id_consulta' => 'required',
-            'id_cliente' => 'required',
             'esfera_ojo_derecho_e_izquierdo' => 'required',
             'cilindro_ojo_derecho_e_izquierdo' => 'required',
             'eje_ojo_derecho_e_izquierdo' => 'required',
@@ -169,7 +166,6 @@ class formulaOpticaControlador extends Controller
         }
 
         $formula_optica->id_consulta = $request->id_consulta;
-        $formula_optica->id_cliente = $request->id_cliente;
         $formula_optica->esfera_ojo_derecho_e_izquierdo = $request->esfera_ojo_derecho_e_izquierdo;
         $formula_optica->cilindro_ojo_derecho_e_izquierdo = $request->cilindro_ojo_derecho_e_izquierdo;
         $formula_optica->eje_ojo_derecho_e_izquierdo = $request->eje_ojo_derecho_e_izquierdo;

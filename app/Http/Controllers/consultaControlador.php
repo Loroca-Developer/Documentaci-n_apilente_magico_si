@@ -28,14 +28,15 @@ class consultaControlador extends Controller
     function store(Request $request)
     {
         $validacion = Validator::make($request->all(), [
-            'id_cliente' => 'required',
             'id_usuario' => 'required',
             'id_historia' => 'required',
             'fecha_hora' => 'required',
             'motivo' => 'required',
             'resultado_examen' => 'nullable|string',
             'diagnostico' => 'nullable|string',
-            'recomendaciones' => 'nullable|string'
+            'recomendaciones' => 'nullable|string',
+            'evolucion' => 'nullable|string',
+            'id_agenda' => 'required',
         ]);
 
         if ($validacion->fails()) {
@@ -49,14 +50,15 @@ class consultaControlador extends Controller
         }
 
         $consulta = Consulta::create([
-            'id_cliente' => $request->id_cliente,
             'id_usuario' => $request->id_usuario,
             'id_historia' => $request->id_historia,
             'fecha_hora' => $request->fecha_hora,
             'motivo' => $request->motivo,
             'resultado_examen' => $request->resultado_examen,
             'diagnostico' => $request->diagnostico,
-            'recomendaciones' => $request->recomendaciones
+            'recomendaciones' => $request->recomendaciones,
+            'evolucion' => $request->evolucion,
+            'id_agenda' => $request->id_agenda
         ]);
 
         if (!$consulta) {
@@ -135,14 +137,15 @@ class consultaControlador extends Controller
         }
 
         $validacion = Validator::make($request->all(), [
-            'id_cliente' => 'required',
             'id_usuario' => 'required',
             'id_historia' => 'required',
             'fecha_hora' => 'required',
             'motivo' => 'required',
             'resultado_examen' => 'nullable|string',
             'diagnostico' => 'nullable|string',
-            'recomendaciones' => 'nullable|string'
+            'recomendaciones' => 'nullable|string',
+            'evolucion' => 'nullable|string',
+            'id_agenda' => 'required',
         ]);
 
         if ($validacion->fails()) {
@@ -154,7 +157,6 @@ class consultaControlador extends Controller
 
             return response()->json($data, 400);
         }
-        $consulta->id_cliente = $request->id_cliente;
         $consulta->id_usuario = $request->id_usuario;
         $consulta->id_historia = $request->id_historia;
         $consulta->fecha_hora = $request->fecha_hora;
@@ -162,6 +164,8 @@ class consultaControlador extends Controller
         $consulta->resultado_examen = $request->resultado_examen;
         $consulta->diagnostico = $request->diagnostico;
         $consulta->recomendaciones = $request->recomendaciones;
+        $consulta->evolucion = $request->evolucion;
+        $consulta->id_agenda = $request->id_agenda;
 
         $consulta->save();
 
